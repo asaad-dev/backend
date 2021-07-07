@@ -93,10 +93,10 @@ app.get("/json/authors/:id", (req, res) => {
 
 
 app.get("/json/authors/:id/books", (req, res) => {
-    res.send(req.params.id + req.params.books);
+    let books = req.params.id + req.params.books;
     
     res.json({
         books: "Beowulf"
     });
+});
 
-})
