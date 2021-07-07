@@ -2,18 +2,29 @@ const express = require('express');
 
 const app = express();
 
-//Run server
-app.listen(300, () => {
-    console.log("Listening on port 300");
-});
+var authors = [
+    {
+        name: "Lawrence Nowell",
+        nationality: "UK",
+        books: ["Beowulf"]
+    },
+    {
+        name: "William Shakespeare",
+        nationality: "UK",
+        books: ["Hamlet", "Othello", "Romeo and Juliet", "MacBeth"]
+    },
+    {
+        name: "Charles Dickens",
+        nationality: "US",
+        books: ["Oliver Twist", "A Christmas Carol"]
+    },
+    {
+        name: "Oscar Wilde",
+        nationality: "UK",
+        books: ["The Picture of Dorian Gray", "The Importance of Being Earnest"]
+    },
+]
 
-// Error hundling
-app.get("*", (req, res) => {
-    res.status(404).json({
-        status: "error",
-        message: "Cannot find the route you asked for"
-    });
-});
 
 
 //Routes
@@ -26,77 +37,55 @@ app.get("/", (req, res) => {
 
 
 // Exo - 02
-app.get("/authors/1/", (req, res) => {
-    res.json({
-        name: "Lawrence Nowell",
-        nationality: "UK"
-    });
-});
-
-app.get("/authors/2/", (req, res) => {
-    res.json({
-        name: "William Shakespeare",
-        nationality: "UK"
-    });
-});
-
-app.get("/authors/3/", (req, res) => {
-    res.json({
-        name: "Charles Dickens",
-        nationality: "US"
-    });
-});
-
-app.get("/authors/4/", (req, res) => {
-    res.json({
-        name: "Oscar Wilde",
-        nationality: "UK"
-    });
+app.get("/authors/:id", (req, res) => {
+    var id = req.params.id;
+    
+    res.send(`${authors[id-1].name}, ${authors[id-1].nationality}`);
+    // var author = authors[id];
 });
 
 
 // Exo - 03
-app.get("/authors/1/books/", (req, res) => {
-    res.json({
-        books: "Beowulf"
-    });
+app.get("/authors/:id/books", (req, res) => {
+    var id = req.params.id;
+
+    res.send(`${authors[id-1].books.join(", ")}`);
 });
 
-app.get("/authors/2/books/", (req, res) => {
-    res.json({
-        books: ["Hamlet", "Othello", "Romeo and Juliet", "MacBeth"]
-    });
-});
 
-app.get("/authors/3/books/", (req, res) => {
-    res.json({
-        books: ["Oliver Twist", "A Christmas Carol"]
-    });
-});
-
-app.get("/authors/4/books/", (req, res) => {
-    res.json({
-        books: ["The Picture of Dorian Gray", "The Importance of Being Earnest"]
-    });
-});
 
 
 // Exo -04
 app.get("/json/authors/:id", (req, res) => {
-    let id = req.params.id;
+    let id = req.params.id-1;
+    let author = authors[id]
     
     res.json({
-        name: "Lawrence Nowell",
-        nationality: "UK"
+        name: author.name,
+        nationality: author.nationality
     });
 });
 
 
 app.get("/json/authors/:id/books", (req, res) => {
-    let books = req.params.id + req.params.books;
+    let books = req.params.id-1;
     
-    res.json({
-        books: "Beowulf"
-    });
+    res.send(`${authors[id-1].books.join(", ")}`)
 });
 
+
+
+
+
+//Run server
+app.listen(300, () => {
+    console.log("Listening on port 300");
+});
+
+// Error hundling
+app.get("*", (req, res) => {
+    res.status(404).json({
+        status: "error",
+        message: "Cannot find the route you asked for"
+    });
+});
