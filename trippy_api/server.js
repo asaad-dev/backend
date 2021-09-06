@@ -1,10 +1,14 @@
 const express = require('express')
 const app = express()
-const expressValidator = require('express-validator')
+// Import routers 
+const hotelsRouter = require('./routers/hotelsRouter')
+const restaurantsRouter = require('./routers/restaurantsRouter')
 
 app.use(express.json())
 
-// Router
+// Routers
+app.use(hotelsRouter)
+app.use(restaurantsRouter)
 
 // Handle 404 responses 
 app.use('*', (req, res, next) => {

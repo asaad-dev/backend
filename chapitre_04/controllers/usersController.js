@@ -1,7 +1,3 @@
-const express = require('express')
-const router = express.Router()
-const expressValidator = require('express-validator')
-
 const users = [
     {name: 'Oliver', email: 'oliver@gimal.com', age: '30', city: 'Paris'},
     {name: 'John', email: 'john@gimal.com', age: '26', city: 'London'},
@@ -16,7 +12,6 @@ const getAllUsers = (req, res) => {
 
 const addNewUser = (req, res) => {
     const newUser = req.body
-    newUser.name = newUser
     users.push(newUser)
 
     res.json({
@@ -65,5 +60,3 @@ module.exports = {
     getOneUser: getOneUser,
     userValidator: userValidator,
 } 
-
-module.exports = router;
