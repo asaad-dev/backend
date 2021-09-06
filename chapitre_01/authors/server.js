@@ -26,7 +26,6 @@ var authors = [
 ]
 
 
-
 //Routes
 // Exo - 01
 app.get("/", (req, res) => {
@@ -53,8 +52,6 @@ app.get("/authors/:id/books", (req, res) => {
 });
 
 
-
-
 // Exo -04
 app.get("/json/authors/:id", (req, res) => {
     let id = req.params.id-1;
@@ -76,16 +73,15 @@ app.get("/json/authors/:id/books", (req, res) => {
 
 
 
-
-//Run server
-app.listen(300, () => {
-    console.log("Listening on port 300");
-});
-
 // Error hundling
 app.get("*", (req, res) => {
     res.status(404).json({
         status: "error",
         message: "Cannot find the route you asked for"
     });
+});
+
+//Run server
+app.listen(300, () => {
+    console.log("Listening on port 300");
 });

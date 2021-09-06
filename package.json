@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/asaad8756/backend#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "multer": "^1.4.3",
+    "validator": "^13.6.0"
   }
 }
