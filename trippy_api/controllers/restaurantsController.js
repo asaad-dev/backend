@@ -1,3 +1,5 @@
+const { get } = require("../routers/hotelsRouter")
+
 const restaurants = [
 	{
 		"id": 1,
@@ -64,4 +66,11 @@ const addNewRestaurant = (req, res) => {
 // Update 
 const updateRestaurant = (req, res) => {
 	 
+}
+
+module.exports = {
+	getAllRestaurants: getAllRestaurants,
+	getRestaurantById: getRestaurantById,
+	addNewRestaurant: addNewRestaurant,
+	updateRestaurant: updateRestaurant,
 }

@@ -1,6 +1,7 @@
 const express = require('express');
-
 const app = express();
+
+
 
 var authors = [
     {
@@ -72,7 +73,6 @@ app.get("/json/authors/:id/books", (req, res) => {
 
 
 
-
 // Error hundling
 app.get("*", (req, res) => {
     res.status(404).json({
@@ -82,6 +82,6 @@ app.get("*", (req, res) => {
 });
 
 //Run server
-app.listen(300, () => {
-    console.log("Listening on port 300");
+app.listen(3000, () => {
+    console.log("Server start listening on port 3000");
 });

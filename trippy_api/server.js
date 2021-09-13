@@ -3,8 +3,33 @@ const app = express()
 // Import routers 
 const hotelsRouter = require('./routers/hotelsRouter')
 const restaurantsRouter = require('./routers/restaurantsRouter')
+// Import config.env
+const dotenv = require('dotenv')
+dotenv.config({
+    path: "./config.env",
+})
+// Import mongoose
+const mongoose = require ("mongoose")
 
 app.use(express.json())
+
+// Connection to MongoDB
+mongoose   
+    .connect(process.env.DB, {
+    useNewUrlParser: true,
+    })
+    .then(() => {
+    console.log("Connected to MongoDB !");
+    });
+
+
+const RestaurantSchema = new mongoose.Schema({
+    name: String,
+    city: String,
+});
+
+// Model
+const Restaurant = mongoose.model('Restaurant', RestaurantSchema)
 
 // Routers
 app.use(hotelsRouter)

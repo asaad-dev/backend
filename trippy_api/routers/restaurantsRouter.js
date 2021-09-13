@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 // Import Restaurants Controller
-const restaurantController = require('../controllers/restaurantsController')
+const restaurantsController = require('../controllers/restaurantsController')
 
 // Routes
 router.get('/restaurants', restaurantsController.getAllRestaurants)
